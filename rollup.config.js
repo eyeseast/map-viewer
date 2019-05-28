@@ -32,6 +32,9 @@ export default {
         ),
         "process.env.MAPBOX_SECRET_TOKEN": JSON.stringify(
           process.env.MAPBOX_SECRET_TOKEN
+        ),
+        "process.env.DEFAULT_USERNAME": JSON.stringify(
+          process.env.DEFAULT_USERNAME
         )
       }),
       svelte({
@@ -108,6 +111,9 @@ export default {
         ),
         "process.env.MAPBOX_SECRET_TOKEN": JSON.stringify(
           process.env.MAPBOX_SECRET_TOKEN
+        ),
+        "process.env.DEFAULT_USERNAME": JSON.stringify(
+          process.env.DEFAULT_USERNAME
         )
       }),
       commonjs(),

@@ -1,52 +1,34 @@
-<style>
-  h1,
-  figure,
-  p {
-    text-align: center;
-    margin: 0 auto;
-  }
+<script>
+  import { stores } from "@sapper/app";
 
-  h1 {
-    font-size: 2.8em;
-    text-transform: uppercase;
-    font-weight: 700;
-    margin: 0 0 0.5em 0;
-  }
+  const { preloading, page } = stores();
+  const { username } = $page.params;
 
-  figure {
-    margin: 0 0 1em 0;
-  }
-
-  img {
-    width: 100%;
-    max-width: 400px;
-    margin: 0 0 1em 0;
-  }
-
-  p {
-    margin: 1em auto;
-  }
-
-  @media (min-width: 480px) {
-    h1 {
-      font-size: 4em;
-    }
-  }
-</style>
+  export const styles = [
+    "mapbox/streets-v11",
+    "mapbox/outdoors-v11",
+    "mapbox/light-v10",
+    "mapbox/dark-v10",
+    "mapbox/satellite-v9",
+    "mapbox/satellite-streets-v11",
+    "mapbox/navigation-preview-day-v4",
+    "mapbox/navigation-preview-night-v4",
+    "mapbox/navigation-guidance-day-v4",
+    "mapbox/navigation-guidance-night-v4"
+  ];
+</script>
 
 <svelte:head>
   <title>Map Viewer</title>
 </svelte:head>
 
-<h1>Great success!</h1>
+<h1>Styles</h1>
 
-<figure>
-  <img alt="Borat" src="great-success.png" />
-  <figcaption>HIGH FIVE!</figcaption>
-</figure>
-
-<p>
-  <strong>
-    Try editing this file (src/routes/index.svelte) to test live reloading.
-  </strong>
-</p>
+<h2>Mapbox public styles</h2>
+<ul>
+  {#each styles as style}
+    <li>
+      <a href="/{style}">{style}</a>
+    </li>
+  {/each}
+</ul>

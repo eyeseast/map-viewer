@@ -58,9 +58,10 @@
     map.on("moveend", e => {
       center = map.getCenter();
       zoom = map.getZoom();
-      window.location.replace(
-        `${window.location.origin}${window.location.pathname}#${hash}`
-      );
+      hash &&
+        window.location.replace(
+          `${window.location.origin}${window.location.pathname}#${hash}`
+        );
     });
 
     window.map = map;
