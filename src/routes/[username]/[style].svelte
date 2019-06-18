@@ -2,23 +2,24 @@
   import { onMount } from "svelte";
   import { stores } from "@sapper/app";
 
-  const { preloading, page } = stores();
+  const { page, session } = stores();
+  const { params } = $page;
 
   let container;
   let map;
   let center;
   let zoom;
 
-  export let style;
+  let style;
 
   $: hash =
     center && zoom
       ? `${center.lat.toFixed(5)}/${center.lng.toFixed(5)}/${zoom.toFixed(2)}`
       : "";
 
-  const { params } = $page;
-
   onMount(() => {
+    window.mapboxgl.accessToken = $session.MAPBOX_PUBLIC_TOKEN;
+
     if (window.location.hash !== "") {
       const [lat, lng, z] = location.hash.slice(1).split("/");
       center = { lat: +lat, lng: +lng };
@@ -39,13 +40,14 @@
 
     map.addControl(
       new MapboxGeocoder({
-        accessToken: mapboxgl.accessToken,
+        accessToken: $session.MAPBOX_PUBLIC_TOKEN,
         mapboxgl,
         marker: false,
-        collapsed: true,
+        collapsed: false,
         clearAndBlurOnEsc: true,
-        clearOnBlur: true
-      })
+        clearOnBlur: false
+      }),
+      "top-left"
     );
 
     map.addControl(new mapboxgl.NavigationControl());

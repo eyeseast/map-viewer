@@ -26,7 +26,8 @@ export default {
     plugins: [
       replace({
         "process.browser": true,
-        "process.env.NODE_ENV": JSON.stringify(mode),
+        "process.env.NODE_ENV": JSON.stringify(mode)
+        /*
         "process.env.MAPBOX_PUBLIC_TOKEN": JSON.stringify(
           process.env.MAPBOX_PUBLIC_TOKEN
         ),
@@ -35,7 +36,7 @@ export default {
         ),
         "process.env.DEFAULT_USERNAME": JSON.stringify(
           process.env.DEFAULT_USERNAME
-        )
+        ) */
       }),
       svelte({
         dev,
@@ -105,8 +106,9 @@ export default {
       resolve(),
       replace({
         "process.browser": true,
-        "process.env.NODE_ENV": JSON.stringify(mode),
-        "process.env.MAPBOX_PUBLIC_TOKEN": JSON.stringify(
+        "process.env.NODE_ENV": JSON.stringify(mode)
+
+        /*"process.env.MAPBOX_PUBLIC_TOKEN": JSON.stringify(
           process.env.MAPBOX_PUBLIC_TOKEN
         ),
         "process.env.MAPBOX_SECRET_TOKEN": JSON.stringify(
@@ -114,7 +116,7 @@ export default {
         ),
         "process.env.DEFAULT_USERNAME": JSON.stringify(
           process.env.DEFAULT_USERNAME
-        )
+        ) */
       }),
       commonjs(),
       !dev && terser()

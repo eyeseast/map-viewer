@@ -1,9 +1,9 @@
 <script context="module">
-  export async function preload({ path, params, query }) {
-    const username = params.username || process.env.DEFAULT_USERNAME;
-    const url = `https://api.mapbox.com/styles/v1/${username}?access_token=${
-      process.env.MAPBOX_SECRET_TOKEN
-    }`;
+  export async function preload(page, session) {
+    const { path, params, query } = page;
+    const { MAPBOX_SECRET_TOKEN, DEFAULT_USERNAME } = session;
+    const username = params.username || DEFAULT_USERNAME;
+    const url = `https://api.mapbox.com/styles/v1/${username}?access_token=${MAPBOX_SECRET_TOKEN}`;
 
     const styles = await this.fetch(url)
       .then(r => r.json())
